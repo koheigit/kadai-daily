@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,19 +14,19 @@ import javax.persistence.Table;
 @Table(name = "employees")
 @NamedQueries({
     @NamedQuery(
-            neme = "getAllEmployees",
+            name = "getAllEmployees",
             query = "SELECT e FROM Employee AS e ORDER BY e.id DESC"
     ),
     @NamedQuery(
-            neme = "getEmployeesCount",
+            name = "getEmployeesCount",
             query = "SELECT COUNT(e) FROM Employee AS e"
     ),
     @NamedQuery(
-            neme = "checkRegisteredCode",
+            name = "checkRegisteredCode",
             query = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :code"
     ),
     @NamedQuery(
-            neme = "checkLoginCodeAndPassword",
+            name = "checkLoginCodeAndPassword",
             query = "SELECT e FROM Employee AS e WHERE e.delete_flag = 0 AND e.code = :code AND e.password = :pass"
     ),
 })
@@ -35,25 +37,25 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @column(name = "code", nullable =false, unique = true)
+    @Column(name = "code", nullable =false, unique = true)
     private String code;
 
-    @column(name = "name", nullable =false)
+    @Column(name = "name", nullable =false)
     private String name;
 
-    @column(name = "password", length = 64, nullable = false)
+    @Column(name = "password", length = 64, nullable = false)
     private String password;
 
-    @column(name = "admin_flag", nullable = false)
+    @Column(name = "admin_flag", nullable = false)
     private Integer admin_flag;
 
-    @column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
 
-    @column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
 
-    @column(name = "delete_flag", nullable = false)
+    @Column(name = "delete_flag", nullable = false)
     private Integer delete_flag;
 
     public Integer getId() {
@@ -119,9 +121,5 @@ public class Employee {
     public void setDelete_flag(Integer delete_flag) {
         this.delete_flag = delete_flag;
     }
-
-
-
-
 
 }
