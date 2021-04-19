@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "reports")
 @NamedQueries({
     @NamedQuery(
-            name = "getAllreports",
+            name = "getAllReports",
             query = "SELECT r FROM Report AS r ORDER BY r.id DESC"
     ),
     @NamedQuery(
@@ -36,10 +36,10 @@ public class Report {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable =false)
+    @JoinColumn(name = "employee_id", nullable = false)
     private Employee employee;
 
-    @Column(name = "report_date", nullable =false)
+    @Column(name = "report_date", nullable = false)
     private Date report_date;
 
     @Column(name = "title", length = 255, nullable = false)
